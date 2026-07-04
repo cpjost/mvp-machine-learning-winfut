@@ -1,6 +1,6 @@
 # Classificação de Operações no WINFUT utilizando Machine Learning
 
-(https://colab.research.google.com/drive/1HAx0aJuSPACW1npf0R5WChOxzUHRM47c#scrollTo=JWDDt3U8MSMy)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SEU_USUARIO/MVP-Machine-Learning-WINFUT/blob/main/notebooks/MVP_ML_WINFUT.ipynb)
 
 ---
 
