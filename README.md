@@ -1,51 +1,60 @@
-# Classificação de Operações no WINFUT utilizando Machine Learning
+# Classificação de Operações no Contrato Futuro do Índice Bovespa (WINFUT) utilizando Machine Learning
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarlosPeterJost/MVP-Machine-Learning-WINFUT/blob/main/notebooks/MVP_ML_WINFUT.ipynb)
+[![Open in Colab]https://colab.research.google.com/drive/1HAx0aJuSPACW1npf0R5WChOxzUHRM47c#scrollTo=JWDDt3U8MSMy
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange)
+![XGBoost](https://img.shields.io/badge/XGBoost-Gradient%20Boosting-green)
+![Google Colab](https://img.shields.io/badge/Google-Colab-F9AB00)
+![PUC-Rio](https://img.shields.io/badge/PUC--Rio-MVP-blueviolet)
 
 ---
 
 # Descrição do Projeto
 
-Este projeto foi desenvolvido como parte do MVP da disciplina de Machine Learning da Pós-Graduação em Ciência de Dados e Analytics da PUC-Rio.
+Este projeto foi desenvolvido como parte do **MVP da disciplina de Machine Learning** da Pós-Graduação em **Ciência de Dados e Analytics da PUC-Rio**.
 
-O objetivo é desenvolver um modelo supervisionado capaz de classificar operações de compra (Long) no contrato futuro do Índice Bovespa (WINFUT), utilizando exclusivamente informações disponíveis no momento da abertura da operação.
+O objetivo deste trabalho é desenvolver e comparar modelos supervisionados de Machine Learning capazes de classificar operações de compra (**Long**) no contrato futuro do Índice Bovespa (**WINFUT**), utilizando exclusivamente informações disponíveis no momento da abertura da operação.
 
-Todo o desenvolvimento foi realizado seguindo boas práticas de Ciência de Dados, incluindo prevenção de Data Leakage, engenharia de atributos, validação temporal, comparação entre diferentes algoritmos e otimização de hiperparâmetros.
+Foram avaliados três algoritmos de classificação (**Decision Tree, Random Forest e XGBoost**), empregando validação temporal com **TimeSeriesSplit** e otimização de hiperparâmetros utilizando **GridSearchCV**, respeitando a natureza cronológica da série temporal e prevenindo vazamento de informações (*Data Leakage*).
+
+Todo o desenvolvimento foi realizado seguindo boas práticas de Ciência de Dados, contemplando análise exploratória, engenharia de atributos, validação temporal, comparação entre modelos e avaliação completa dos resultados.
 
 ---
 
 # Objetivos
 
-- Construir uma variável-alvo baseada em uma estratégia de risco-retorno;
+- Construir uma variável-alvo baseada em uma estratégia objetiva de risco-retorno;
 - Realizar análise exploratória dos dados;
 - Preparar e transformar o conjunto de dados para modelagem;
-- Desenvolver novos atributos (Feature Engineering);
+- Desenvolver novos atributos (*Feature Engineering*);
 - Comparar diferentes algoritmos de classificação;
-- Otimizar hiperparâmetros utilizando GridSearchCV;
-- Avaliar o desempenho utilizando métricas apropriadas para problemas de classificação.
+- Otimizar hiperparâmetros utilizando **GridSearchCV**;
+- Avaliar o desempenho utilizando métricas apropriadas para problemas de classificação;
+- Desenvolver um fluxo completo de Machine Learning aplicado ao mercado financeiro.
 
 ---
 
 # Dataset
 
-| Informação | Valor                           |
-| ---------- | ------------------------------- |
-| Ativo      | WINFUT                          |
-| Timeframe  | 5 minutos                       |
-| Registros  | 56.338                          |
-| Variáveis  | 12 atributos                    |
-| Target     | Operação vencedora ou perdedora |
-
+| Informação | Valor |
+|------------|-------|
+| Ativo | WINFUT |
+| Frequência | Candles de 5 minutos |
+| Registros | 56.338 |
+| Variáveis preditoras | 12 |
+| Variável-alvo | Target (Sucesso / Insucesso da operação) |
+| Tipo do problema | Classificação Binária |
 
 ---
 
 # Fluxo do Projeto
 
 ```text
-Coleta dos Dados
+Dados Históricos
         │
         ▼
-Análise Exploratória
+Análise Exploratória dos Dados (EDA)
         │
         ▼
 Preparação dos Dados
@@ -57,40 +66,72 @@ Engenharia de Atributos
 Construção da Variável-Alvo
         │
         ▼
-Divisão Temporal
+Divisão Temporal dos Dados
         │
         ▼
-Treinamento
+Decision Tree
         │
         ▼
-Comparação dos Modelos
+Random Forest
+        │
+        ▼
+XGBoost
         │
         ▼
 GridSearchCV + TimeSeriesSplit
         │
         ▼
-Avaliação Final
+Avaliação dos Modelos
 ```
 
 ---
 
 # Modelos Avaliados
 
-- Decision Tree
-- Random Forest
-- XGBoost
+| Modelo | Accuracy | Precision | Recall | F1-Score |
+|---------|---------:|----------:|--------:|---------:|
+| Decision Tree | 0.7104 | 0.2618 | 0.0729 | 0.1140 |
+| Random Forest | 0.7141 | 0.2511 | 0.0597 | 0.0965 |
+| **XGBoost** | **0.7126** | **0.2862** | **0.0830** | **0.1286** |
 
 ---
 
 # Principais Técnicas Utilizadas
 
+- Análise Exploratória dos Dados (EDA)
 - Feature Engineering
+- Construção da Variável-Alvo
+- Divisão Temporal dos Dados
 - TimeSeriesSplit
 - GridSearchCV
+- Decision Tree
+- Random Forest
+- XGBoost
 - Matriz de Confusão
 - Classification Report
 - Feature Importance
 - Prevenção de Data Leakage
+
+---
+
+# Principais Resultados
+
+- Foram comparados três algoritmos supervisionados de classificação.
+- O **XGBoost** apresentou o melhor desempenho geral.
+- A utilização do **TimeSeriesSplit** preservou a ordem cronológica dos dados durante a validação.
+- A otimização utilizando **GridSearchCV** confirmou que os hiperparâmetros inicialmente definidos já representavam a melhor configuração dentre as combinações avaliadas.
+- As variáveis **Máximo**, **Mínimo**, **Fechamento**, **MM9** e **MM21** foram as mais relevantes para a classificação das operações.
+
+---
+
+# Principais Bibliotecas
+
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scikit-learn
+- xgboost
 
 ---
 
@@ -109,7 +150,7 @@ Avaliação Final
 
 # Estrutura do Repositório
 
-```
+```text
 MVP-Machine-Learning-WINFUT/
 │
 ├── notebooks/
@@ -119,43 +160,25 @@ MVP-Machine-Learning-WINFUT/
 │   └── WINFUT_F_02_5min.csv
 │
 ├── images/
+│   ├── comparacao_modelos.png
+│   ├── importancia_variaveis.png
+│   └── matriz_confusao_xgboost.png
 │
 ├── README.md
 ├── requirements.txt
-└── LICENSE
+├── LICENSE
+└── .gitignore
 ```
 
 ---
 
-# Principais Resultados
+# Trabalhos Futuros
 
-Após a comparação entre os modelos, o XGBoost apresentou o melhor desempenho geral, obtendo os maiores valores de Precision, Recall e F1-Score entre os algoritmos avaliados.
-
-A etapa de otimização utilizando GridSearchCV confirmou que a configuração inicial do modelo já apresentava o melhor desempenho dentre as combinações avaliadas.
-
----
-
-# Como Executar
-
-Clone o repositório:
-
-```bash
-git clone https://github.com/SEU_USUARIO/MVP-Machine-Learning-WINFUT.git
-```
-
-Instale as dependências:
-
-```bash
-pip install -r requirements.txt
-```
-
-Abra o notebook:
-
-```bash
-jupyter notebook
-```
-
-ou utilize diretamente o botão **Open in Colab** disponível no início desta página.
+- Incorporar indicadores técnicos adicionais (RSI, MACD, ATR, ADX e Bandas de Bollinger);
+- Investigar técnicas de balanceamento das classes (SMOTE, ADASYN e ajuste de pesos);
+- Ampliar a busca de hiperparâmetros utilizando Random Search e Bayesian Optimization;
+- Comparar o desempenho com algoritmos como LightGBM, CatBoost e Redes Neurais;
+- Avaliar o modelo em diferentes ativos financeiros e períodos históricos.
 
 ---
 
@@ -163,4 +186,4 @@ ou utilize diretamente o botão **Open in Colab** disponível no início desta p
 
 **Carlos Peter Jost**
 
-Pós-Graduação em Ciência de Dados e Analytics – PUC-Rio
+
